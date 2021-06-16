@@ -1,3 +1,7 @@
+@extends('adfm::public.layout')
+@section('meta-title', $product->title)
+
+@section('content')
 <section class="section section_page section_no-bottom-space">
     <div class="container">
         <div class="section__header">
@@ -21,3 +25,4 @@
         </div>
     </div>
 </section>
+@endsection
