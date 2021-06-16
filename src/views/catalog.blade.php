@@ -1,5 +1,5 @@
 @extends('adfm::public.layout')
-{{-- @section('meta-title', $page->title) --}}
+{{-- @section('meta-title', $catalog->title) --}}
 
 @section('content')
 <section class="section section_page section__catalog">

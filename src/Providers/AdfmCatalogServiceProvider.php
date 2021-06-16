@@ -30,5 +30,11 @@ class AdfmCatalogServiceProvider extends ServiceProvider
             __DIR__.'/../routes' => base_path('/routes/adfm'),
             __DIR__.'/../database/migrations' => app_path('../database/migrations'),
         ]);
+
+        if (file_exists(base_path('/routes/adfm') . '/catalog-routes.php')) {
+            $this->loadRoutesFrom(base_path('/routes/adfm') . '/catalog-routes.php');
+        } else {
+            $this->loadRoutesFrom(__DIR__.'/../routes' . '/catalog-routes.php');
+        }
     }
 }
