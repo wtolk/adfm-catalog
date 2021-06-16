@@ -1,0 +1,28 @@
+{
+    "name": "wtolk/adfm-catalog",
+    "description": "catalog package",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "BlWoAlf",
+            "email": "blwoalf@inbox.ru"
+        }
+    ],
+    "minimum-stability": "dev",
+    "autoload": {
+        "psr-4": {
+            "Wtolk\\AdfmCatalog\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Wtolk\\AdfmCatalog\\Providers\\AdfmCatalogServiceProvider"
+            ]
+        }
+    },
+    "require": {
+        "wtolk/adfm": "*"
+    }
+}
