@@ -23,10 +23,6 @@ class AdfmCatalogServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $this->registerYandexStorageDriver();
-        $this->registerConsoleCommands();
-        $this->setViewHelpers();
-
         $this->publishes([
             __DIR__.'/../Controllers' => app_path('Http/Controllers'),
             __DIR__.'/../Models' => app_path('Models/Adfm/Catalog'),
