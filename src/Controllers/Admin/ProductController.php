@@ -56,8 +56,13 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $item = Product::findOrFail($id);
-        $item->fill($request->all()['product'])->save();
+        $product = $request->all()['product'];
+        
+        if(!isset($product['categories'])){
+            $item->categories()->sync([]);
+        }
+
+        $item->fill($product)->save();
         return redirect()->route('adfm.products.index');
     }
 
