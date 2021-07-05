@@ -17,7 +17,7 @@ class CreateProductsTable extends Migration
             $table->id();
             $table->string('title');
             $table->string('slug')->unique();
-            $table->integer('price');
+            $table->integer('price')->default(0);
             $table->text('content')->default(null)->nullable();
             $table->string('article')->default(null)->nullable();
             $table->json('meta')->default(null)->nullable();
