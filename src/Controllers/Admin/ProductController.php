@@ -28,7 +28,18 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         $item = new Product();
-        $item->fill($request->all()['product'])->save();
+        $product = $request->all()['product'];
+
+        if(isset($product['categories'])){
+            $categories = $product['categories'];
+            unset($product['categories']);
+            $item->fill($product)->save();
+            $item->update(['categories' => $categories]);
+        }
+        else{
+            $item->fill($product)->save();
+        }
+        
         return redirect()->route('adfm.products.index');
     }
 
@@ -46,7 +57,13 @@ class ProductController extends Controller
     public function update(Request $request, $id)
     {
         $item = Product::findOrFail($id);
-        $item->fill($request->all()['product'])->save();
+        $product = $request->all()['product'];
+        
+        if(!isset($product['categories'])){
+            $item->categories()->sync([]);
+        }
+
+        $item->fill($product)->save();
         return redirect()->route('adfm.products.index');
     }
 
