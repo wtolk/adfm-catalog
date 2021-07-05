@@ -115,16 +115,16 @@ class ProductScreen
         return [
             Column::make([
                 Input::make('product.title')->title('Название')->required(),
-                Input::make('product.price')->required()->defaultValue(0)->title('Цена'),
+                Input::make('product.price')->required()->title('Цена'),
                 Input::make('product.article')->title('Артикул')->placeholder('6230i'),
-                Summernote::make('product.content')->title('Описание товара'),
+                TinyMCE::make('product.content')->title('Описание товара'),
                 MultiFile::make('product.files')->title('картинки')->preview()
             ]),
             Column::make([
                 Input::make('product.slug')->title('Вид в адресной строке'),
                 Relation::make('product.categories')->options(
                     Category::all()->pluck('title', 'id')->toArray()
-                )->title('Категории товара')->multiple()->defaultValue($categories)->empty('Пустое значение', '0'),
+                )->title('Категории товара')->multiple()->defaultValue($categories),
                 Input::make('product.meta.title')->title('TITLE (мета-тег)'),
                 Input::make('product.meta.description')->title('Description (мета-тег)'),
             ])->class('col col-md-4')

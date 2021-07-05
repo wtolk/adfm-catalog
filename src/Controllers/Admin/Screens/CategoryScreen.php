@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin\Screens;
 use App\Helpers\Dev;
 use Wtolk\Crud\Form\Column;
 use Wtolk\Crud\Form\File;
+use Wtolk\Crud\Form\Relation;
 use Wtolk\Crud\Form\Summernote;
 use Wtolk\Crud\Form\TinyMCE;
 use Wtolk\Crud\FormPresenter;
@@ -96,6 +97,8 @@ class CategoryScreen
             Column::make([
                 Input::make('category.title')->title('Название категории'),
                 Input::make('category.slug')->title('Вид в адресной строке'),
+                Relation::make('category.parent_id')->title('Родительская категория')
+                    ->options(Category::all()->pluck('title', 'id')->toArray())->empty('Нет', '0'),
                 Summernote::make('category.description')->title('Описание категории'),
             ])
         ];

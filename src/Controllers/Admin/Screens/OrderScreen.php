@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Admin\Screens;
 
 
 use App\Helpers\Dev;
-use App\Models\Adfm\Order;
+use App\Models\Adfm\Catalog\Order;
 use Whoops\Exception\ErrorException;
 use Wtolk\Crud\Form\Checkbox;
 use Wtolk\Crud\Form\Column;
@@ -37,18 +37,19 @@ class OrderScreen
     {
         $screen = new self();
         $screen->form->template('table-list')->source([
-            'orders' => Order::filter(request()->input('filter'))->paginate(50)
+            'orders' => Order::paginate(50)
+            // filter(request()->input('filter'))->
         ]);
         $screen->form->title = 'Заказы';
         $screen->form->addField(
-            TableField::make('name', 'Имя покупателя')
+            TableField::make('client_name', 'Имя покупателя')
                 ->link(function ($model) {
-                    echo Link::make($model->name)->route('adfm.orders.show', ['id' => $model->id])
+                    echo Link::make($model->client_name)->route('adfm.orders.show', ['id' => $model->id])
                         ->render();
                 })
         );
         $screen->form->addField(TableField::make('phone', 'Номер покупателя'));
-        $screen->form->addField(TableField::make('summ', 'Сумма заказа'));
+        $screen->form->addField(TableField::make('cart.summ', 'Сумма заказа'));
         $screen->form->addField(TableField::make('created_at', 'Дата создания'));
         $screen->form->filters(self::getFilters());
         $screen->form->build();
@@ -74,22 +75,22 @@ class OrderScreen
 
     public static function getFilters() {
         return [
-            Input::make('filter.title:like')->title('Заголовок страницы')->setFilter(),
-            Input::make('filter.content:like')->title('Текст страницы')->setFilter(),
+            Input::make('filter.client_name:like')->title('Имф клиента')->setFilter(),
         ];
     }
 
     public static function getFields() {
         return [
             Column::make([
-                Text::make('order.name')->title('Имя покупателя'),
+                Text::make('order.client_name')->title('Имя покупателя'),
                 Text::make('order.phone')->title('Номер покупателя'),
-                Text::make('order.meta.adress')->title('Адрес доставки'),
+                Text::make('order.address')->title('Адрес доставки'),
+                Text::make('order.note')->title('Примечание'),
                 Text::make('order.created_at')->title('Дата заказа'),
-                Table::make('order.products')->title('Список товаров')->setFields(
+                Table::make('order.cart.products')->title('Список товаров')->setFields(
                     ['title' => 'Название','count' => 'Количество', 'price' => 'Цена' ]
                 ),
-                Text::make('order.summ')->title('Сумма заказа'),
+                Text::make('order.cart.summ')->title('Сумма заказа'),
             ])->class('col col-md-12')
         ];
     }

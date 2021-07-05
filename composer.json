@@ -23,6 +23,7 @@
         }
     },
     "require": {
-        "wtolk/adfm": "*"
+        "wtolk/adfm": "*",
+        "livewire/livewire": "*"
     }
 }
