@@ -56,6 +56,7 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $item = Product::findOrFail($id);
         $product = $request->all()['product'];
         
         if(!isset($product['categories'])){
