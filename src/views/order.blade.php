@@ -5,6 +5,7 @@
     <form class="form" method="POST" action="{{route('adfm.order.store')}}">
         <div class="order__form">
             @csrf
+            @honeypot
             <div class="field"><label>Имя<input type="text" name="fields[client_name]" required="required"></label></div>
             <div class="field"><label>Номер телефона<input type="tel" name="fields[phone]" required="required"></label></div>
             <div class="field"><label>Адрес доставки<input type="text" name="fields[address]" required="required"></label></div>
