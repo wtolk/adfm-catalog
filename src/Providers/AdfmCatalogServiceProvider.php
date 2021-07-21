@@ -32,6 +32,8 @@ class AdfmCatalogServiceProvider extends ServiceProvider
             __DIR__.'/../Livewire/views' => resource_path('views/livewire'),
             __DIR__.'/../routes' => base_path('/routes/adfm'),
             __DIR__.'/../database/migrations' => app_path('../database/migrations'),
+            __DIR__.'/../database/factories' => app_path('../database/factories/Adfm/Catalog'),
+            __DIR__.'/../database/seeders' => app_path('../database/seeders'),
         ]);
 
         if (file_exists(base_path('/routes/adfm') . '/catalog-routes.php')) {
