@@ -11,8 +11,8 @@ class CatalogController extends Controller
 {
     public function showCatalog()
     {
-        $catalog = Product::get();
-        return view('adfm::public.catalog.catalog', compact('catalog'));
+        $products = Product::get();
+        return view('adfm::public.catalog.catalog', compact('products'));
     }
 
     public function showProduct(Product $product)
