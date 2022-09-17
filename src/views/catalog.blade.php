@@ -1,5 +1,8 @@
 @extends('adfm::public.layout')
-{{-- @section('meta-title', $catalog->title) --}}
+@php
+    $metaTtile = isset($category) ? $category->title : 'Каталог продукции'
+@endphp
+@section('meta-title', $metaTtile)
 
 @section('content')
 <section class="section section_page section__catalog">

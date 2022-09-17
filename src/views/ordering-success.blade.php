@@ -1,4 +1,4 @@
-@section('meta-title', 'какой-то загловок')
+@section('meta-title', 'Заказ успешно оформлен')
 
 @section('content')
 <div class="ordering-success">
